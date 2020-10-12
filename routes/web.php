@@ -77,5 +77,41 @@ Route::name('admin.')->group(function () {
 	});	
 	Route::name('ranking.')->group(function () {
 		Route::get('admin/ranking/index', 'Admin\RankingController@index')->name('index');		
-	});				
+	});
+	Route::name('user_account.')->group(function () {
+		Route::get('admin/user_account/index', 'Admin\UserAccountController@index')->name('index');
+		Route::get('admin/user_account/create', 'Admin\UserAccountController@create')->name('create');
+		Route::post('admin/user_account/store', 'Admin\UserAccountController@store')->name('store');
+		Route::get('admin/user_account/show/{id}', 'Admin\UserAccountController@show')->name('show');
+		Route::get('admin/user_account/edit/{id}', 'Admin\UserAccountController@edit')->name('edit');
+		Route::post('admin/user_account/update/{id}', 'Admin\UserAccountController@update')->name('update');
+		Route::get('admin/user_account/destroy/{id}', 'Admin\UserAccountController@destroy')->name('destroy');
+	});
+	Route::name('web_home.')->group(function () {
+		Route::get('admin/web_home/index', 'Admin\WebHomeController@index')->name('index');
+		Route::get('admin/web_home/create', 'Admin\WebHomeController@create')->name('create');
+		Route::post('admin/web_home/store', 'Admin\WebHomeController@store')->name('store');
+		Route::get('admin/web_home/show/{id}', 'Admin\WebHomeController@show')->name('show');
+		Route::get('admin/web_home/edit/{id}', 'Admin\WebHomeController@edit')->name('edit');
+		Route::post('admin/web_home/update/{id}', 'Admin\WebHomeController@update')->name('update');
+		Route::get('admin/web_home/destroy/{id}', 'Admin\WebHomeController@destroy')->name('destroy');
+	});	
+	Route::name('web_about_us.')->group(function () {
+		Route::get('admin/web_about_us/index', 'Admin\WebAboutUsController@index')->name('index');
+		Route::get('admin/web_about_us/create', 'Admin\WebAboutUsController@create')->name('create');
+		Route::post('admin/web_about_us/store', 'Admin\WebAboutUsController@store')->name('store');
+		Route::get('admin/web_about_us/show/{id}', 'Admin\WebAboutUsController@show')->name('show');
+		Route::get('admin/web_about_us/edit/{id}', 'Admin\WebAboutUsController@edit')->name('edit');
+		Route::post('admin/web_about_us/update/{id}', 'Admin\WebAboutUsController@update')->name('update');
+		Route::get('admin/web_about_us/destroy/{id}', 'Admin\WebAboutUsController@destroy')->name('destroy');
+	});	
+	Route::name('news.')->group(function () {
+		Route::get('admin/news/index', 'Admin\NewsBackendController@index')->name('index');
+		Route::get('admin/news/create', 'Admin\NewsBackendController@create')->name('create');
+		Route::post('admin/news/store', 'Admin\NewsBackendController@store')->name('store');
+		Route::get('admin/news/show/{id}', 'Admin\NewsBackendController@show')->name('show');
+		Route::get('admin/news/edit/{id}', 'Admin\NewsBackendController@edit')->name('edit');
+		Route::post('admin/news/update/{id}', 'Admin\NewsBackendController@update')->name('update');
+		Route::get('admin/news/destroy/{id}', 'Admin\NewsBackendController@destroy')->name('destroy');
+	});									
 });

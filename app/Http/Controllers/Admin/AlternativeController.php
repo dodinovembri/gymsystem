@@ -159,7 +159,7 @@ class AlternativeController extends Controller
     }   
 
     public function store_alternative_value(Request $request, $alternative_id)
-    {            
+    {                
         $find = AlternativeValueModel::where('alternative_id', $alternative_id)->get();
         if (empty($find)) {
             $sumCritetrion = count($request->value);

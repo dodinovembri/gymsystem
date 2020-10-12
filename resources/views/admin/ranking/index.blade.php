@@ -30,7 +30,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <?php for ($i=0; $i < $jumlah_alternative; $i++) { ?>
+                  <?php $no = 0; for ($i=0; $i < $jumlah_alternative; $i++) { ?>
                     <tr>
                       <td>{{ $ranking_sum[$i] }}</td>                                                                              
                       <td>{{ $alt_id[$i] }}</td>                      

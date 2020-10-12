@@ -29,10 +29,7 @@
 									</div>
 									<div class="col-sm-10">
 										<select class="form-control select2" name="value[]" required="">
-											<?php $current_value = App\Models\AlternativeValueModel::where('alternative_id', $alternative_id)->where('criteria_id', $value->id)->first(); 
-												$current = App\Models\CriterionValueModel::find($current_value->criterion_value_id);
-											?>
-											<option value="{{ $current->criteria_id }}&{{ $current->id }}">{{$current->description}}</option>
+											<option value="">Pilih</option>
 												<?php 
 												$criterion_value = App\Models\CriterionValueModel::where('criteria_id', $value->id)->get();
 												foreach ($criterion_value as $key => $value_criterion) { ?>
