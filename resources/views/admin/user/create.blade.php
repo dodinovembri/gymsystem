@@ -8,11 +8,11 @@
 			<nav aria-label="breadcrumb">
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
-					<li class="breadcrumb-item"><a href="{{ route('superadmin.company.index') }}">Company List</a></li>
-					<li class="breadcrumb-item active" aria-current="page">Create Company</li>
+					<li class="breadcrumb-item"><a href="{{ route('admin.user.index') }}">Users List</a></li>
+					<li class="breadcrumb-item active" aria-current="page">Create User</li>
 				</ol>
 			</nav>
-			<h4 class="content-title content-title-xs">Create Company</h4>
+			<h4 class="content-title content-title-xs">Create User</h4>
 		</div>
 	</div><!-- content-header -->
 	<div class="content-body">

@@ -19,7 +19,7 @@
       <div class="card rounded-5">
         <div class="card-body">       
           <div class="component">
-            <a href="{{ route('admin.web_home.create') }}">
+            <a href="{{ route('admin.news.create') }}">
               <button class="btn btn-primary rounded-5"><i data-feather="plus"></i> Add New</button>
             </a><br><br>
             @if(session()->has('message'))
@@ -65,8 +65,8 @@
                         <span class="badge badge-success rounded-5">Active</span>
                         <?php } ?></a></td>                                                       
                       <td>
-                        <a href="{{ route('admin.web_home.show', $value->id) }}"><i class="fa fa-eye"></i></a> 
-                        <a href="{{ route('admin.web_home.edit', $value->id) }}"><i class="fa fa-edit" style="margin-left: 8px"></i></a> 
+                        <a href="{{ route('admin.news.show', $value->id) }}"><i class="fa fa-eye"></i></a> 
+                        <a href="{{ route('admin.news.edit', $value->id) }}"><i class="fa fa-edit" style="margin-left: 8px"></i></a> 
                         <a href="#modal1{{$value->id}}" data-toggle="modal"><i class="fa fa-trash" style="margin-left: 8px"></i></a>
                       </td>                  
                     </tr>     
@@ -84,7 +84,7 @@
                           </div>
                           <div class="modal-footer">
                             <button type="button" class="btn btn-secondary rounded-5" data-dismiss="modal">Cancel</button>
-                            <a href="{{ route('admin.web_home.destroy', $value->id) }}"><button type="button" class="btn btn-dark rounded-5">Delete</button></a>
+                            <a href="{{ route('admin.news.destroy', $value->id) }}"><button type="button" class="btn btn-dark rounded-5">Delete</button></a>
                           </div>
                         </div>
                       </div>

@@ -238,7 +238,7 @@
                         <div class="row justify-content-center">
                             <div class="col-md-10 text-center">
                                 <h2 class="font-weight-bold mb-4 appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="1500">About Us</h2>
-                                <p class="text-color-dark pb-3 mb-4 appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="1700">{{ $about_us->about }}</p>
+                                <p class="text-color-dark pb-3 mb-4 appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="1700">{{ empty($about_us->about) ? '' : $about_us->about }}</p>
                             </div>
                         </div>
                     </div>

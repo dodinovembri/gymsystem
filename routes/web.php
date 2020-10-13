@@ -78,14 +78,14 @@ Route::name('admin.')->group(function () {
 	Route::name('ranking.')->group(function () {
 		Route::get('admin/ranking/index', 'Admin\RankingController@index')->name('index');		
 	});
-	Route::name('user_account.')->group(function () {
-		Route::get('admin/user_account/index', 'Admin\UserAccountController@index')->name('index');
-		Route::get('admin/user_account/create', 'Admin\UserAccountController@create')->name('create');
-		Route::post('admin/user_account/store', 'Admin\UserAccountController@store')->name('store');
-		Route::get('admin/user_account/show/{id}', 'Admin\UserAccountController@show')->name('show');
-		Route::get('admin/user_account/edit/{id}', 'Admin\UserAccountController@edit')->name('edit');
-		Route::post('admin/user_account/update/{id}', 'Admin\UserAccountController@update')->name('update');
-		Route::get('admin/user_account/destroy/{id}', 'Admin\UserAccountController@destroy')->name('destroy');
+	Route::name('user.')->group(function () {
+		Route::get('admin/user/index', 'Admin\UserController@index')->name('index');
+		Route::get('admin/user/create', 'Admin\UserController@create')->name('create');
+		Route::post('admin/user/store', 'Admin\UserController@store')->name('store');
+		Route::get('admin/user/show/{id}', 'Admin\UserController@show')->name('show');
+		Route::get('admin/user/edit/{id}', 'Admin\UserController@edit')->name('edit');
+		Route::post('admin/user/update/{id}', 'Admin\UserController@update')->name('update');
+		Route::get('admin/user/destroy/{id}', 'Admin\UserController@destroy')->name('destroy');
 	});
 	Route::name('web_home.')->group(function () {
 		Route::get('admin/web_home/index', 'Admin\WebHomeController@index')->name('index');

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\WebHomeModel;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
 
 class WebHomeController extends Controller
 {
@@ -15,7 +17,7 @@ class WebHomeController extends Controller
      */
     public function index()
     {
-        $data['web_home'] = WebHomeModel::where('status', 1)->get();   
+        $data['web_home'] = WebHomeModel::all();   
         return view('admin.home.index', $data);
     }
 
@@ -26,7 +28,7 @@ class WebHomeController extends Controller
      */
     public function create()
     {
-        return view('admin.alternative.create');
+        return view('admin.home.create');
     }
 
     /**
@@ -37,15 +39,27 @@ class WebHomeController extends Controller
      */
     public function store(Request $request)
     {
-        $insert = new CriteriaModel();
-        $insert->name = $request->name;        
-        $insert->attribute = $request->attribute;        
-        $insert->weight = $request->weight;        
-        $insert->created_by = auth()->user()->id;        
-        $insert->created_at = date("Y-m-d H:i:s");
-        $insert->save();
+        $validator = Validator::make($request->all(), [
+           'image_home'    => 'max:5000' 
+        ]);
 
-        return redirect(route('admin.criteria.index'))->with('message', 'Success add data !');
+        if ($validator->fails()) {
+            return redirect()->route('admin.web_home.create')->withInput()->withErrors($validator);
+        }else{
+
+            $insert = new WebHomeModel();
+
+            $file                       = $request->file('image_home');
+            $imagefile_name                  = uniqid() . '.'. $file->getClientOriginalExtension();
+            $path = Storage::putFileAs( 'public/img', $request->file('image_home'), $imagefile_name);
+
+            $insert->text = $request->text;
+            $insert->image = $imagefile_name;
+            $insert->status = $request->status;
+            $insert->save();
+            
+            return redirect(route('admin.web_home.index'))->with('message', 'Success add data !');
+        } 
     }
 
     /**
@@ -56,8 +70,8 @@ class WebHomeController extends Controller
      */
     public function show($id)
     {
-        $data['criteria'] = CriteriaModel::find($id);
-        return view('admin.criteria.show', $data);
+        $data['web_home'] = WebHomeModel::find($id);
+        return view('admin.home.show', $data);
     }
 
     /**
@@ -68,8 +82,8 @@ class WebHomeController extends Controller
      */
     public function edit($id)
     {
-        $data['criteria'] = CriteriaModel::find($id);
-        return view('admin.criteria.edit', $data);
+        $data['web_home'] = WebHomeModel::find($id);
+        return view('admin.home.edit', $data);
     }
 
     /**
@@ -81,15 +95,38 @@ class WebHomeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $update = CriteriaModel::find($id);
-        $update->name = $request->name;        
-        $update->attribute = $request->attribute;        
-        $update->weight = $request->weight;                        
-        $update->updated_by = auth()->user()->id;
-        $update->updated_at = date("Y-m-d H:i:s");
-        $update->update();
+        if (empty($request->image_home)) {
+            $update = WebHomeModel::find($id);
+            $update->text = $request->text;        
+            $update->status = $request->status;        
+            $update->updated_by = auth()->user()->id;
+            $update->updated_at = date("Y-m-d H:i:s");
+            $update->update();
 
-        return redirect(route('admin.criteria.index'))->with('message', 'Data success updated !'); 
+            return redirect(route('admin.web_home.index'))->with('message', 'Data success updated !');            
+        }else{
+             $validator = Validator::make($request->all(), [
+               'image_home'    => 'max:5000' 
+            ]);
+
+            if ($validator->fails()) {
+                return redirect()->route('admin.web_home.create')->withInput()->withErrors($validator);
+            }else{
+
+                $update = WebHomeModel::find($id);
+
+                $file                       = $request->file('image_home');
+                $imagefile_name                  = uniqid() . '.'. $file->getClientOriginalExtension();
+                $path = Storage::putFileAs( 'public/img', $request->file('image_home'), $imagefile_name);
+
+                $update->text = $request->text;
+                $update->image = $imagefile_name;
+                $update->status = $request->status;
+                $update->save();
+                
+                return redirect(route('admin.web_home.index'))->with('message', 'Success add data !');
+            }
+        }
     }
 
     /**
@@ -100,9 +137,9 @@ class WebHomeController extends Controller
      */
     public function destroy($id)
     {
-        $findtodelete = CriteriaModel::find($id);
+        $findtodelete = WebHomeModel::find($id);
         $findtodelete->delete();
 
-        return redirect(route('admin.criteria.index'))->with('message', 'Data success deleted !');
+        return redirect(route('admin.web_home.index'))->with('message', 'Data success deleted !');
     }
 }
