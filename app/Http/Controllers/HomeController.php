@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\AlternativeModel;
+use App\Models\CriteriaModel;
+use App\Models\UserAccountModel;
+use App\Models\NewsModel;
 
 class HomeController extends Controller
 {
@@ -23,6 +27,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $data['total_alternative'] = AlternativeModel::count();
+        $data['total_criteria'] = CriteriaModel::count();
+        $data['total_users'] = UserAccountModel::count();
+        $data['total_news'] = NewsModel::count();
+
+        return view('home', $data);
     }
 }

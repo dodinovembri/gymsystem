@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'FrontEnd\FrontEndController@index')->name('index');
 Route::get('/', 'FrontEnd\FrontEndController@index')->name('fe');
+Route::get('/frontend', 'FrontEnd\FrontEndController@index')->name('frontend');
 
 Route::name('fe.')->group(function () {
 	Route::get('fe/show/{id}', 'FrontEnd\FrontEndController@show')->name('show');
@@ -113,5 +114,14 @@ Route::name('admin.')->group(function () {
 		Route::get('admin/news/edit/{id}', 'Admin\NewsBackendController@edit')->name('edit');
 		Route::post('admin/news/update/{id}', 'Admin\NewsBackendController@update')->name('update');
 		Route::get('admin/news/destroy/{id}', 'Admin\NewsBackendController@destroy')->name('destroy');
+	});		
+	Route::name('profile.')->group(function () {
+		Route::get('admin/profile/index', 'Admin\ProfileController@index')->name('index');
+		Route::get('admin/profile/create', 'Admin\ProfileController@create')->name('create');
+		Route::post('admin/profile/store', 'Admin\ProfileController@store')->name('store');
+		Route::get('admin/profile/show/{id}', 'Admin\ProfileController@show')->name('show');
+		Route::get('admin/profile/edit/{id}', 'Admin\ProfileController@edit')->name('edit');
+		Route::post('admin/profile/update/{id}', 'Admin\ProfileController@update')->name('update');
+		Route::get('admin/profile/destroy/{id}', 'Admin\ProfileController@destroy')->name('destroy');
 	});									
 });
