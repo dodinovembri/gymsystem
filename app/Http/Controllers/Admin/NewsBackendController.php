@@ -84,7 +84,8 @@ class NewsBackendController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data['news'] = NewsModel::find($id);
+        return view('admin.news.edit', $data);
     }
 
     /**
@@ -96,7 +97,42 @@ class NewsBackendController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if (empty($request->image_news)) {
+            $update = NewsModel::find($id);
+            $update->title = $request->title;        
+            $update->description = $request->description;        
+            $update->date = $request->date;        
+            $update->status = $request->status;        
+            $update->updated_by = auth()->user()->id;
+            $update->updated_at = date("Y-m-d H:i:s");
+            $update->update();
+
+            return redirect(route('admin.news.index'))->with('message', 'Data success updated !');            
+        }else{
+             $validator = Validator::make($request->all(), [
+               'image_news'    => 'max:5000' 
+            ]);
+
+            if ($validator->fails()) {
+                return redirect()->route('admin.news.create')->withInput()->withErrors($validator);
+            }else{
+
+                $update = NewsModel::find($id);
+
+                $file                       = $request->file('image_news');
+                $imagefile_name                  = uniqid() . '.'. $file->getClientOriginalExtension();
+                $path = Storage::putFileAs( 'public/img', $request->file('image_news'), $imagefile_name);
+                
+                $update->title = $request->title;        
+                $update->description = $request->description;        
+                $update->date = $request->date;        
+                $update->image = $imagefile_name;   
+                $update->status = $request->status; 
+                $update->save();
+                
+                return redirect(route('admin.news.index'))->with('message', 'Success add data !');
+            }
+        }
     }
 
     /**

@@ -31,7 +31,7 @@
 								<label class="form-label">Image</label>
 							</div>
 							<div class="col-sm-10">
-								<img src="{{asset('assets/img')}}/{{$web_home->image}}" width="20pt">
+								<img src="{{asset('assets/img')}}/{{$web_home->image}}" width="80pt">
 							</div><br><br><br>
 							<div class="col-sm-2">
 								<label class="form-label">Status</label>
