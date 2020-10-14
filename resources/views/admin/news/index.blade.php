@@ -58,7 +58,7 @@
                       <td>{{ $value->title }}</td>       
                       <td>{{ $value->description }}</td>                                                  
                       <td>{{ $value->date }}</td>
-                      <td><img src="{{asset('assets/img')}}/{{$value->image}}"></td>
+                      <td><img src="{{asset('assets/img')}}/{{$value->image}}" width="80pt"></td>
                       <td><?php if ($value->status == 0) { ?>
                         <span class="badge badge-danger rounded-5">Inactive</span>
                       <?php }elseif($value->status == 1){ ?>
