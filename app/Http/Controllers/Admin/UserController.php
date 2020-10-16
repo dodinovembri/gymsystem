@@ -46,6 +46,7 @@ class UserController extends Controller
                 $insert = new UserAccountModel();
                 $insert->name = $request->name;        
                 $insert->email = $request->email;        
+                $insert->role_id = $request->role_id;        
                 $insert->password = Hash::make($request->password);                       
                 $insert->created_at = date("Y-m-d H:i:s");
                 $insert->save();
@@ -97,6 +98,7 @@ class UserController extends Controller
             if (empty($check)) {
                 $update = UserAccountModel::find($id);
                 $update->name = $request->name;  
+                $update->role_id = $request->role_id;  
                 $update->password = Hash::make($request->password);                       
                 $update->updated_at = date("Y-m-d H:i:s");
                 $update->update();

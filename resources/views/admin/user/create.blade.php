@@ -37,6 +37,15 @@
 									<input type="email" class="form-control" name="email" placeholder="Enter your email" required="">
 								</div><br><br><br>
 								<div class="col-sm-2">
+									<label class="form-label">Role</label>
+								</div>
+								<div class="col-sm-10">
+									<select class="form-control" name="role_id">
+										<option value="0">Administrator</option>
+										<option value="1">Kepala</option>
+									</select>
+								</div><br><br><br>								
+								<div class="col-sm-2">
 									<label class="form-label">Password</label>
 								</div>
 								<div class="col-sm-10">

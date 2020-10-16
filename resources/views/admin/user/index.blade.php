@@ -44,6 +44,7 @@
                   <tr>
                     <th class="wd-5p">No</th>
                     <th class="wd-15p">Name</th>
+                    <th class="wd-15p">Status</th>
                     <th class="wd-20p">Email</th>                                                        
                     <th class="wd-10p">Actions</th>                
                   </tr>
@@ -53,6 +54,7 @@
                     <tr>
                       <td>{{ $no }}</td>
                       <td>{{ $value->name }}</td>
+                      <td>{{ $value->role_id == 0 ? 'Administrator' : 'Kepala' }}</td>
                       <td>{{ $value->email }}</td>                                                         
                       <td>
                         <a href="{{ route('admin.user.show', $value->id) }}"><i class="fa fa-eye"></i></a> 

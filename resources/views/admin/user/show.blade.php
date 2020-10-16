@@ -35,7 +35,13 @@
 								</div>
 								<div class="col-sm-10">
 									<input type="text" class="form-control" name="user_name" placeholder="Nama Perusahaan" value="{{ $user->email }}" disabled="">
-								</div><br><br><br>						
+								</div><br><br><br>	
+								<div class="col-sm-2">
+									<label class="form-label">Role</label>
+								</div>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" name="user_name" placeholder="Nama Perusahaan" value="<?php if($user->role_id == 0) { echo 'Administrator'; } else{ echo 'Kepala'; } ?>" disabled="">
+								</div><br><br><br>														
 								<div class="col-sm-2">
 									<label class="form-label"></label>
 								</div>
