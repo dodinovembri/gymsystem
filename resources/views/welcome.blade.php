@@ -210,7 +210,9 @@
                                             <?php $image = App\Models\AlternativeModel::where('id', $alt_id[$i])->first(); ?>
                                             <a href="{{ route('fe.gym.show', $alt_id[$i]) }}"><img src="{{ asset('img') }}/{{ $image->image }}" class="img-fluid" alt=""></a>
                                             <div class="thumb-info-price bg-color-secondary font-weight-semibold">
-                                                <span>Ranking: {{ number_format($ranking_sum[$i], 2) }}</span>
+                                                <span>
+                                                    <?php $result_rating = number_format($ranking_sum[$i], 2) * 10 ?>
+                                                    Rating: {{ $result_rating }}</span>
                                             </div>
                                         </div>
                                         <div class="thumb-info-caption">

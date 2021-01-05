@@ -42,65 +42,38 @@
 
         <div role="main" class="main">
             
-            <section class="section section-default border-0 my-5 appear-animation" data-appear-animation="fadeIn" data-appear-animation-delay="750">
-                <div class="container py-4">
-
-                    <div class="row align-items-center">
-                        <div class="col-md-6 appear-animation" data-appear-animation="fadeInLeftShorter" data-appear-animation-delay="1000">
-                            <div class="owl-carousel owl-theme nav-inside mb-0" data-plugin-options="{'items': 1, 'margin': 10, 'animateOut': 'fadeOut', 'autoplay': true, 'autoplayTimeout': 6000, 'loop': true}">
-                                <div>
-                                    <img alt="" class="img-fluid" src="{{ asset('img/background-image-2.jpg') }}">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="progress-bars">
-                                <?php foreach ($gym as $key => $value) { ?>
-                                    <div class="progress-label">
-                                        <span class="text-1">{{ $value->name }} - {{ $value->description }}</span>
-                                    </div>
-                                    <div class="progress mb-2">
-                                        <?php $result = $value->value_criteria / 5 * 100; ?>
-                                        <div class="progress-bar progress-bar-primary" data-appear-progress-animation="{{ $result }}%">
-                                            <span class="progress-bar-tooltip">Dari {{ $value->name }} memiliki score {{$result}} dari 100</span>
-                                        </div>
-                                    </div>                                    
-                                <?php } ?>                            
-                            </div>
+            <section class="section bg-color-tertiary border-0 my-0" id="popular-gym">
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <h2 class="font-weight-bold text-center appear-animation" data-appear-animation="fadeInUpShorter">Popular Gym</h2>
                         </div>
                     </div>
-
+                    <div class="row justify-content-center mb-5">
+                        <?php for ($i=0; $i < $jumlah_alternative; $i++) { ?>                              
+                            <div class="col-md-6 col-lg-4 col-xl-3 mb-4 pb-3 appear-animation" data-appear-animation="fadeInLeftShorter" data-appear-animation-delay="400">
+                                <div class="thumb-info thumb-info-hide-wrapper-bg custom-thumb-info-style-1">
+                                    <div class="thumb-info-wrapper">
+                                        <a href="{{ route('fe.gym.show', $alt_id[$i]) }}"><img src="{{ asset('img/background-image-2.jpg') }}" class="img-fluid" alt=""></a>
+                                        <div class="thumb-info-price bg-color-secondary font-weight-semibold">
+                                            <span>Ranking: {{ number_format($ranking_sum[$i], 2) }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="thumb-info-caption">
+                                        <h3 class="font-weight-semibold text-transform-none"><a href="demo-education-courses-detail.html" class="custom-link-color-dark">{{ $gym_alt[$i] }}</a></h3>
+                                        <p>{{ substr($description[$i], 0, 100) }} ...</p>
+                                    </div>
+                                    <div class="thumb-info-footer">
+                                        <ul class="nav text-1">
+                                            <li><i class="far fa-user text-color-primary"></i> Gym System</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>                                
+                        <?php } ?>
+                    </div>
                 </div>
             </section>
-
-                <div class="container">
-
-                    <div class="row mt-5 py-3">
-                        <div class="col-md-6">
-                            <div class="toggle toggle-primary toggle-simple m-0" data-plugin-toggle>
-                                <section class="toggle active mt-0">
-                                    <label>{{ $information->name }}</label>
-                                    <div class="toggle-content">
-                                        <p>{{$information->description}}</p>
-                                    </div>
-                                </section>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="row">
-                                    <h4>Locations</h4>
-                                    <iframe src="{{$information->location}}" width="600" height="400" frameborder="0" style="border:0" allowfullscreen></iframe>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col py-4">
-                            <hr class="solid">
-                        </div>
-                    </div>
-
-                </div>            
-
         <footer id="footer" class="bg-color-quaternary border-top-0 mt-0">
             <div class="footer-copyright bg-color-quaternary border-top-0">
                 <div class="container">

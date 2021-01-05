@@ -38,7 +38,15 @@ Route::name('fe.')->group(function () {
 		Route::post('fe/news/update/{id}', 'FrontEnd\NewsController@update')->name('update');
 		Route::get('fe/news/destroy/{id}', 'FrontEnd\NewsController@destroy')->name('destroy');
 	});		
-
+	Route::name('search_gym.')->group(function () {
+		Route::get('fe/search_gym/index', 'FrontEnd\SearchGymController@index')->name('index');
+		Route::get('fe/search_gym/create', 'FrontEnd\SearchGymController@create')->name('create');
+		Route::post('fe/search_gym/store', 'FrontEnd\SearchGymController@store')->name('store');
+		Route::get('fe/search_gym/show/{id}', 'FrontEnd\SearchGymController@show')->name('show');
+		Route::get('fe/search_gym/edit/{id}', 'FrontEnd\SearchGymController@edit')->name('edit');
+		Route::post('fe/search_gym/update/{id}', 'FrontEnd\SearchGymController@update')->name('update');
+		Route::get('fe/search_gym/destroy/{id}', 'FrontEnd\SearchGymController@destroy')->name('destroy');
+	});
 });
 
 Auth::routes();
